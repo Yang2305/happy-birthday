@@ -205,11 +205,7 @@ const animationTimeline = () => {
     .to(".idea-1", 0.7, ideaTextTransLeave)
 
     .from(".idea-2", 0.7, ideaTextTrans)
-    .from(".idea2-img", 0.5, {
-      opacity: 0,
-      skewY: "20deg",
-    })
-    .to(".idea2-img", 0.2, { opacity: 0 }, "+=1.5")
+
     .to(".idea-2", 0.7, ideaTextTransLeave)
 
     .from(".idea-3", 0.7, ideaTextTrans)
@@ -224,7 +220,8 @@ const animationTimeline = () => {
       opacity: 0,
       skewY: "20deg",
     })
-    .to(".idea3-img", 0.2, { opacity: 1 }, "+=1.5")
+    .to(".idea3-img", 0.2, { opacity: 0 }, "+=1.5")
+
     .to(".idea-3", 0.7, ideaTextTransLeave)
     .from(".idea-4", 0.7, ideaTextTrans)
     .to(".idea-4", 0.7, ideaTextTransLeave, "+=1.5")
@@ -250,6 +247,11 @@ const animationTimeline = () => {
       },
       "+=0.4"
     )
+    .from(".idea5-img", 0.5, {
+      opacity: 0,
+      skewY: "20deg",
+    })
+    .to(".idea5-img", 0.2, { opacity: 1 }, "+=1.5")
     .to(
       ".idea-5",
       0.7,
