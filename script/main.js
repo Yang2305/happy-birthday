@@ -1,30 +1,67 @@
-// Import the data to customize and insert them into page
-const fetchData = () => {
-  fetch("customize.json")
-    .then((data) => data.json())
-    .then((data) => {
-      dataArr = Object.keys(data);
-      dataArr.map((customData) => {
-        if (data[customData] !== "") {
-          if (customData === "imagePath") {
-            document
-              .querySelector(`[data-node-name*="${customData}"]`)
-              .setAttribute("src", data[customData]);
-          } else {
-            document.querySelector(
-              `[data-node-name*="${customData}"]`
-            ).innerText = data[customData];
-          }
-        }
+// // 3. This function creates an <iframe> (and YouTube player)
+// //    after the API code downloads.
+// var player;
+// function onYouTubeIframeAPIReady(id, videoID) {
+//   player = new YT.Player(id, {
+//     height: "500",
+//     width: "350",
+//     videoId: videoID,
+//     playerVars: {
+//       playsinline: 1,
+//     },
+//     events: {
+//       onReady: onPlayerReady,
+//       onStateChange: onPlayerStateChange,
+//     },
+//   });
+// }
 
-        // Check if the iteration is over
-        // Run amimation if so
-        if (dataArr.length === dataArr.indexOf(customData) + 1) {
-          animationTimeline();
-        }
-      });
-    });
-};
+// // 4. The API will call this function when the video player is ready.
+// function onPlayerReady(event) {
+//   event.target.playVideo();
+// }
+
+// // 5. The API calls this function when the player's state changes.
+// //    The function indicates that when playing a video (state=1),
+// //    the player should play for six seconds and then stop.
+// var done = false;
+// function onPlayerStateChange(event) {
+//   if (event.data == YT.PlayerState.PLAYING && !done) {
+//     setTimeout(stopVideo, 6000);
+//     done = true;
+//   }
+// }
+// function stopVideo() {
+//   player.stopVideo();
+// }
+
+// Import the data to customize and insert them into page
+// const fetchData = () => {
+//   fetch("customize.json")
+//     .then((data) => data.json())
+//     .then((data) => {
+//       dataArr = Object.keys(data);
+//       dataArr.map((customData) => {
+//         if (data[customData] !== "") {
+//           if (customData === "imagePath") {
+//             document
+//               .querySelector(`[data-node-name*="${customData}"]`)
+//               .setAttribute("src", data[customData]);
+//           } else {
+//             document.querySelector(
+//               `[data-node-name*="${customData}"]`
+//             ).innerText = data[customData];
+//           }
+//         }
+
+//         // Check if the iteration is over
+//         // Run amimation if so
+//         if (dataArr.length === dataArr.indexOf(customData) + 1) {
+//           animationTimeline();
+//         }
+//       });
+//     });
+// };
 
 // Animation Timeline
 const animationTimeline = () => {
@@ -67,6 +104,10 @@ const animationTimeline = () => {
       opacity: 0,
       y: 10,
     })
+    .from(".two-img", 0.3, {
+      opacity: 0,
+      y: 10,
+    })
     .to(
       ".one",
       0.7,
@@ -85,20 +126,34 @@ const animationTimeline = () => {
       },
       "-=1"
     )
+    .to(".two-img", 0.3, {
+      opacity: 0,
+      y: 10,
+    })
     .from(".three", 0.7, {
       opacity: 0,
       y: 10,
       // scale: 0.7
     })
+    .from(".three-img", 0.2, {
+      opacity: 0,
+      y: 10,
+    })
     .to(
-      ".three",
-      0.7,
+      ".three-img",
+      0.1,
       {
+        y: 0,
+        scale: 0.5,
         opacity: 0,
-        y: 10,
+        skewX: "15deg",
       },
       "+=2"
     )
+    .to(".three", 0.7, {
+      opacity: 0,
+      y: 10,
+    })
     .from(".four", 0.7, {
       scale: 0.2,
       opacity: 0,
@@ -118,6 +173,18 @@ const animationTimeline = () => {
     .to(".fake-btn", 0.1, {
       backgroundColor: "rgb(127, 206, 248)",
     })
+    .from(".four-img", 1, {
+      opacity: 0,
+    })
+    .to(
+      ".four-img",
+      0.1,
+      {
+        scale: 1,
+        opacity: 1,
+      },
+      "+=2"
+    )
     .to(
       ".four",
       0.5,
@@ -126,20 +193,39 @@ const animationTimeline = () => {
         opacity: 0,
         y: -150,
       },
-      "+=0.7"
+      "+=1"
     )
+
     .from(".idea-1", 0.7, ideaTextTrans)
-    .to(".idea-1", 0.7, ideaTextTransLeave, "+=1.5")
+    .from(".idea1-img", 0.5, {
+      opacity: 1,
+      x: -80,
+    })
+    .to(".idea1-img", 0.2, { opacity: 0, x: 50 }, "+=1.5")
+    .to(".idea-1", 0.7, ideaTextTransLeave)
+
     .from(".idea-2", 0.7, ideaTextTrans)
-    .to(".idea-2", 0.7, ideaTextTransLeave, "+=1.5")
+    .from(".idea2-img", 0.5, {
+      opacity: 0,
+      skewY: "20deg",
+    })
+    .to(".idea2-img", 0.2, { opacity: 0 }, "+=1.5")
+    .to(".idea-2", 0.7, ideaTextTransLeave)
+
     .from(".idea-3", 0.7, ideaTextTrans)
+
     .to(".idea-3 strong", 0.5, {
       scale: 1.2,
       x: 10,
       backgroundColor: "rgb(21, 161, 237)",
       color: "#fff",
     })
-    .to(".idea-3", 0.7, ideaTextTransLeave, "+=1.5")
+    .from(".idea3-img", 0.5, {
+      opacity: 1,
+      skewY: "20deg",
+    })
+    .to(".idea3-img", 0.2, { opacity: 0 }, "+=1.5")
+    .to(".idea-3", 0.7, ideaTextTransLeave)
     .from(".idea-4", 0.7, ideaTextTrans)
     .to(".idea-4", 0.7, ideaTextTransLeave, "+=1.5")
     .from(
@@ -283,7 +369,7 @@ const animationTimeline = () => {
       y: 30,
       zIndex: "-1",
     })
-    .staggerFrom(".nine p", 1, ideaTextTrans, 1.2)
+    .staggerFrom(".ten p", 1, ideaTextTrans, 1.2)
     .to(
       ".last-smile",
       0.5,
@@ -304,4 +390,8 @@ const animationTimeline = () => {
 };
 
 // Run fetch and animation in sequence
-fetchData();
+// fetchData();
+
+// if (dataArr.length === dataArr.indexOf(customData) + 1) {
+animationTimeline();
+// }

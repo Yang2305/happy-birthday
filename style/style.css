@@ -131,6 +131,17 @@ p {
   font-size: 15rem;
 }
 
+.four img,
+.idea-1 img,
+.idea-3 img,
+.idea-5 img,
+.idea-6 img {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+}
+
 .six {
   position: relative;
 }
