@@ -128,7 +128,7 @@ const animationTimeline = () => {
     )
     .to(".two-img", 0.3, {
       opacity: 0,
-      y: 10,
+      scale: 0.3,
     })
     .from(".three", 0.7, {
       opacity: 0,
@@ -221,10 +221,10 @@ const animationTimeline = () => {
       color: "#fff",
     })
     .from(".idea3-img", 0.5, {
-      opacity: 1,
+      opacity: 0,
       skewY: "20deg",
     })
-    .to(".idea3-img", 0.2, { opacity: 0 }, "+=1.5")
+    .to(".idea3-img", 0.2, { opacity: 1 }, "+=1.5")
     .to(".idea-3", 0.7, ideaTextTransLeave)
     .from(".idea-4", 0.7, ideaTextTrans)
     .to(".idea-4", 0.7, ideaTextTransLeave, "+=1.5")
